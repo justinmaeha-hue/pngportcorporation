@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#073b2a">
+<meta name="description" content="Independent maritime information portal for Papua New Guinea.">
+<title>PNG Ports | Maritime Information Portal</title>
+
+<style>
+:root {
+  --green:#073b2a;
+  --green2:#0d5b40;
+  --gold:#d7b45a;
+  --cream:#f5f3eb;
+  --white:#ffffff;
+  --ink:#1c2924;
+  --muted:#69776f;
+  --line:#e1e7e1;
+  --red:#9b342b;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--ink);
+  background:#f4f6f3;
+  line-height:1.6;
+}
+button,input,select{font:inherit}
+button,a{touch-action:manipulation}
+a{color:inherit}
+.topbar{
+  background:#04271d;
+  color:#e9f0eb;
+  padding:8px 5%;
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+header{
+  background:var(--green);
+  color:white;
+  border-bottom:3px solid var(--gold);
+}
+.navwrap{
+  max-width:1200px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+}
+.logo{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--gold);
+  border-radius:12px;
+  font-size:24px;
+  background:#104b37;
+}
+.brand strong{display:block;font-size:18px;letter-spacing:.5px}
+.brand small{display:block;color:#d8e6dc;font-size:11px}
+nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+nav a{
+  color:white;
+  text-decoration:none;
+  font-size:13px;
+}
+nav a:hover{color:var(--gold)}
+.menu-button{
+  display:none;
+  color:white;
+  background:transparent;
+  border:1px solid #729083;
+  padding:8px 12px;
+  border-radius:7px;
+}
+.notice{
+  background:#fff6db;
+  border-bottom:1px solid #e9d9a8;
+  padding:12px 5%;
+  font-size:13px;
+  color:#624d19;
+}
+.container{width:min(1120px,92%);margin:auto}
+.hero{
+  color:white;
+  background:
+    linear-gradient(105deg,rgba(3,39,28,.97),rgba(8,73,51,.84)),
+    radial-gradient(circle at 85% 25%,#4c8a68,#073b2a);
+  padding:68px 0 62px;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:38px;
+  align-items:center;
+}
+.eyebrow{
+  color:var(--gold);
+  font-size:12px;
+  font-weight:bold;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+h1{font-size:clamp(32px,5vw,55px);line-height:1.1;margin:15px 0}
+.hero p{color:#e0ebe4;max-width:640px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.btn{
+  display:inline-block;
+  border:0;
+  padding:12px 18px;
+  border-radius:7px;
+  text-decoration:none;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:13px;
+}
+.btn-gold{background:var(--gold);color:#1d2b21}
+.btn-outline{border:1px solid #b5cbbd;color:white;background:transparent}
+.btn-green{background:var(--green2);color:white}
+.hero-card{
+  padding:25px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:16px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(5px);
+}
+.hero-card h3{margin-top:0}
+.hero-stat{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  border-top:1px solid rgba(255,255,255,.17);
+  padding:12px 0;
+  font-size:13px;
+}
+.hero-stat span:last-child{color:var(--gold);font-weight:bold}
+section{padding:55px 0}
+.section-head{margin-bottom:25px}
+.section-head h2{font-size:29px;color:var(--green);margin:0 0 7px}
+.section-head p{color:var(--muted);margin:0;max-width:720px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:white;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.card-icon{
+  width:44px;height:44px;
+  display:grid;place-items:center;
+  background:#e8f2eb;
+  border-radius:10px;font-size:23px;
+}
+.card h3{font-size:17px;margin:14px 0 7px;color:var(--green)}
+.card p{font-size:13px;color:var(--muted);margin:0}
+.tag{
+  display:inline-block;
+  background:#edf3ee;
+  color:var(--green2);
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:10px;
+  font-weight:bold;
+}
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+  align-items:center;
+}
+.feature-panel{
+  background:var(--green);
+  color:white;
+  padding:30px;
+  border-radius:15px;
+}
+.feature-panel h2{color:white}
+.feature-panel p{color:#d9e6dd}
+.list{padding-left:19px;color:var(--muted);font-size:14px}
+.list li{margin:10px 0}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.port{
+  background:white;
+  border-radius:11px;
+  border:1px solid var(--line);
+  overflow:hidden;
+}
+.port-banner{
+  min-height:100px;
+  display:grid;place-items:center;
+  font-size:36px;
+  background:linear-gradient(135deg,#0a4632,#277a55);
+  color:#f5d67f;
+}
+.port-content{padding:18px}
+.port-content h3{margin:0;color:var(--green)}
+.port-content p{font-size:13px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:12px;border-bottom:1px solid var(--line)}
+th{background:#edf3ee;color:var(--green)}
+.table-wrap{overflow-x:auto;background:white;border:1px solid var(--line);border-radius:10px}
+.notice-list{display:grid;gap:12px}
+.notice-item{
+  background:white;border:1px solid var(--line);
+  border-left:4px solid var(--gold);
+  border-radius:8px;padding:16px;
+}
+.notice-item strong{color:var(--green)}
+.notice-item p{margin:5px 0 0;color:var(--muted);font-size:13px}
+.demo{
+  background:#edf2ee;
+  border-top:1px solid #d9e4db;
+  border-bottom:1px solid #d9e4db;
+}
+.demo-warning{
+  border:1px solid #e3c76d;
+  background:#fff6d9;
+  padding:14px;
+  border-radius:8px;
+  font-size:13px;
+  color:#604b15;
+  margin-bottom:20px;
+}
+.dashboard{
+  background:white;border:1px solid var(--line);
+  border-radius:14px;overflow:hidden;box-shadow:var(--shadow);
+}
+.dash-head{
+  background:var(--green);color:white;padding:20px;
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.dash-head h3{margin:0}
+.dash-body{padding:20px}
+.stat-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;
+}
+.stat{
+  background:#f5f8f5;border:1px solid var(--line);
+  padding:16px;border-radius:9px;
+}
+.stat small{display:block;color:var(--muted);font-size:11px}
+.stat strong{display:block;font-size:22px;color:var(--green);margin-top:5px}
+.demo-controls{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.demo-controls button{
+  border:1px solid #b6c9bc;background:white;
+  padding:10px 14px;border-radius:7px;cursor:pointer;
+}
+.demo-controls button.active{background:var(--green);color:white}
+.demo-panel{
+  padding:18px;border:1px solid var(--line);
+  border-radius:9px;background:#fff;
+}
+.demo-panel h4{margin-top:0;color:var(--green)}
+.demo-result{font-size:13px;color:var(--muted);min-height:25px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-box{background:white;border:1px solid var(--line);border-radius:12px;padding:23px}
+.contact-box h3{color:var(--green);margin-top:0}
+.contact-box p{font-size:13px;color:var(--muted)}
+footer{background:#04271d;color:#d9e5dc;padding:35px 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:25px}
+footer h3,footer h4{color:var(--gold)}
+footer p,footer a{font-size:12px;color:#d9e5dc}
+footer a{display:block;margin:7px 0;text-decoration:none}
+.footer-bottom{
+  border-top:1px solid #315546;margin-top:25px;padding-top:18px;
+  font-size:11px;color:#b9cbbf;
+}
+.small{font-size:11px;color:var(--muted)}
+@media(max-width:760px){
+  .navwrap{align-items:flex-start;flex-wrap:wrap}
+  .menu-button{display:block}
+  nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:13px;padding:12px 0}
+  nav.open{display:flex}
+  .hero-grid,.split,.contact-grid{grid-template-columns:1fr}
+  .grid-3,.port-grid{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  section{padding:40px 0}
+  .hero{padding:45px 0}
+}
+@media(max-width:400px){
+  .stat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<div class="topbar">
+  <span>INDEPENDENT MARITIME INFORMATION PORTAL</span>
+  <span>Papua New Guinea · Pacific Region</span>
+</div>
+
+<header>
+  <div class="navwrap">
+    <a class="brand" href="#home" aria-label="Home">
+      <div class="logo">⚓</div>
+      <div>
+        <strong>PNG PORTS</strong>
+        <small>MARITIME INFORMATION PORTAL</small>
+      </div>
+    </a>
+
+    <button class="menu-button" id="menuButton"
+      aria-expanded="false" aria-controls="mainNav">☰ Menu</button>
+
+    <nav id="mainNav">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#ports">Port Directory</a>
+      <a href="#notices">Notices</a>
+      <a href="#member-demo">Dashboard Preview</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="notice">
+  <strong>Important:</strong> This is an independent website concept.
+  It is not the official PNG Ports Corporation Limited website and is
+  not authorised to collect deposits, sell investments, or process banking transactions.
+</div>
+
+<main>
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Connecting islands and communities</div>
+      <h1>Maritime connections for a stronger Papua New Guinea.</h1>
+      <p>
+        Explore general maritime information, port-directory resources,
+        shipping notices, and service information for Papua New Guinea's
+        maritime sector.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#ports">Explore port directory</a>
+        <a class="btn btn-outline" href="#about">Learn about this portal</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <h3>Maritime information centre</h3>
+      <p>Use this independent portal to explore general information.</p>
+      <div class="hero-stat">
+        <span>Portal status</span><span>Information only</span>
+      </div>
+      <div class="hero-stat">
+        <span>Financial transactions</span><span>Not available</span>
+      </div>
+      <div class="hero-stat">
+        <span>Official affiliation</span><span>Not claimed</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container split">
+    <div>
+      <div class="section-head">
+        <h2>About this portal</h2>
+        <p>A modern starting point for general information about maritime activity in Papua New Guinea.</p>
+      </div>
+      <p>
+        Maritime transport is important to a country made up of islands,
+        coastal communities, and geographically separated provinces.
+        Ports help connect people, goods, businesses, and regional markets.
+      </p>
+      <p>
+        This independent concept brings general maritime information into
+        one place. It does not claim to represent a government department,
+        state-owned enterprise, bank, or investment provider.
+      </p>
+      <ul class="list">
+        <li>General maritime and port information</li>
+        <li>Informational notices and updates</li>
+        <li>Service-directory layout</li>
+        <li>Mobile-friendly design</li>
+        <li>A dashboard interface for design testing</li>
+      </ul>
+    </div>
+    <div class="feature-panel">
+      <div class="eyebrow">Our design principles</div>
+      <h2>Clarity. Security. Accountability.</h2>
+      <p>
+        Public information should be easy to understand. Users should be
+        able to identify who operates a website, which services are genuine,
+        and whether a transaction is real or only a demonstration.
+      </p>
+      <p>
+        This template does not collect passwords, banking details,
+        identity documents, or withdrawal PINs.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="services" style="background:#edf2ee">
+  <div class="container">
+    <div class="section-head">
+      <h2>Information and services</h2>
+      <p>General sections that can be expanded with verified information and authorised contact details.</p>
+    </div>
+    <div class="grid-3">
+      <article class="card">
+        <div class="card-icon">⚓</div>
+        <h3>Port directory</h3>
+        <p>Browse general information about selected maritime locations and their regional importance.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">📢</div>
+        <h3>Public notices</h3>
+        <p>Display dated notices, service updates, and announcements with clear source attribution.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">📚</div>
+        <h3>Information resources</h3>
+        <p>Organise general guidance, maritime terminology, and links to verified official sources.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">🚢</div>
+        <h3>Shipping information</h3>
+        <p>Provide general shipping-related information when accurate and authorised sources are available.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>Privacy principles</h3>
+        <p>Avoid unnecessary collection of personal information and explain any data processing clearly.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">☎️</div>
+        <h3>Contact directory</h3>
+        <p>Publish contact details only after confirming that they belong to the organisation listed.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="ports">
+  <div class="container">
+    <div class="section-head">
+      <h2>Port directory</h2>
+      <p>Illustrative directory entries. Verify operational details with authoritative sources before publication.</p>
+    </div>
+    <div class="port-grid">
+      <article class="port">
+        <div class="port-banner">⚓</div>
+        <div class="port-content">
+          <span class="tag">MOROBE</span>
+          <h3>Lae Port</h3>
+          <p>Lae is an important commercial centre on the northern coast of Papua New Guinea.</p>
+        </div>
+      </article>
+      <article class="port">
+        <div class="port-banner">🌊</div>
+        <div class="port-content">
+          <span class="tag">NATIONAL CAPITAL REGION</span>
+          <h3>Motukea area</h3>
+          <p>Use this entry for verified information about maritime facilities in the Port Moresby area.</p>
+        </div>
+      </article>
+      <article class="port">
+        <div class="port-banner">🚢</div>
+        <div class="port-content">
+          <span class="tag">NEW GUINEA ISLAND REGION</span>
+          <h3>Madang and Kimbe</h3>
+          <p>Regional locations can be documented with verified information about services and operations.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="notices" style="background:#edf2ee">
+  <div class="container">
+    <div class="section-head">
+      <h2>Notices and announcements</h2>
+      <p>The following are sample notices to demonstrate the layout, not actual operational announcements.</p>
+    </div>
+    <div class="notice-list">
+      <article class="notice-item">
+        <strong>Sample notice — website information</strong>
+        <p>This demonstration portal is for general informational use. Confirm official notices with the responsible organisation.</p>
+      </article>
+      <article class="notice-item">
+        <strong>Sample notice — privacy and security</strong>
+        <p>Never share passwords, one-time security codes, or banking PINs with someone claiming to be a website administrator.</p>
+      </article>
+      <article class="notice-item">
+        <strong>Sample notice — service verification</strong>
+        <p>Check an organisation's official contact channels before making payments or providing sensitive information.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="member-demo" class="demo">
+  <div class="container">
+    <div class="section-head">
+      <h2>Member dashboard preview</h2>
+      <p>A visual demonstration of a dashboard interface. All displayed amounts are examples and have no monetary value.</p>
+    </div>
+
+    <div class="demo-warning">
+      <strong>DEMONSTRATION ONLY:</strong> No real account is created here.
+      No money is deposited, earned, approved, or transferred. Do not enter
+      your real password, bank details, phone security code, or PIN.
+    </div>
+
+    <div class="dashboard">
+      <div class="dash-head">
+        <div>
+          <h3>Member overview</h3>
+          <small>Independent portal · UI preview</small>
+        </div>
+        <span class="tag">SAMPLE ACCOUNT</span>
+      </div>
+
+      <div class="dash-body">
+        <div class="stat-grid">
+          <div class="stat">
+            <small>Example balance</small>
+            <strong>K0.00</strong>
+          </div>
+          <div class="stat">
+            <small>Example earnings</small>
+            <strong>K0.00</strong>
+          </div>
+          <div class="stat">
+            <small>Example status</small>
+            <strong style="font-size:16px">Preview</strong>
+          </div>
+        </div>
+
+        <div class="demo-controls" role="group" aria-label="Dashboard preview tabs">
+          <button class="active" data-panel="overview">Overview</button>
+          <button data-panel="activity">Activity</button>
+          <button data-panel="security">Security</button>
+        </div>
+
+        <div class="demo-panel" id="demoPanel" aria-live="polite">
+          <h4>Overview</h4>
+          <p>This area demonstrates how account summaries could be arranged in a real application.</p>
+          <p class="demo-result">No live financial information is connected.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-head">
+      <h2>Contact and information</h2>
+      <p>Use verified contact information for the organisation that actually operates this website.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-box">
+        <h3>Portal information</h3>
+        <p><strong>Website type:</strong> Independent information portal</p>
+        <p><strong>Region:</strong> Papua New Guinea</p>
+        <p><strong>Purpose:</strong> Maritime information and interface demonstration</p>
+        <p><strong>Official affiliation:</strong> None claimed</p>
+      </div>
+      <div class="contact-box">
+        <h3>Need assistance?</h3>
+        <p>
+          For genuine port operations, schedules, fees, or official services,
+          consult the responsible organisation using contact information
+          verified from its official website.
+        </p>
+        <p>
+          Do not send money to a personal account based only on information
+          displayed on an independent website.
+        </p>
+        <a class="btn btn-green" href="#about">Read portal information</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h3>PNG PORTS</h3>
+        <p>
+          Independent maritime information portal concept for Papua New Guinea.
+          This website does not claim official corporate or government status.
+        </p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#about">About this portal</a>
+        <a href="#services">Information and services</a>
+        <a href="#ports">Port directory</a>
+      </div>
+      <div>
+        <h4>Information</h4>
+        <a href="#notices">Notices</a>
+        <a href="#member-demo">Dashboard preview</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © <span id="year"></span> Independent maritime information portal concept.
+      All sample notices and dashboard figures are illustrative.
+    </div>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* This page contains no analytics or third-party tracking scripts. */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+const menuButton = document.getElementById("menuButton");
+const mainNav = document.getElementById("mainNav");
+
+menuButton.addEventListener("click", function () {
+  const isOpen = mainNav.classList.toggle("open");
+  menuButton.setAttribute("aria-expanded", String(isOpen));
+});
+
+mainNav.querySelectorAll("a").forEach(function (link) {
+  link.addEventListener("click", function () {
+    mainNav.classList.remove("open");
+    menuButton.setAttribute("aria-expanded", "false");
+  });
+});
+
+const previewPanels = {
+  overview: {
+    title: "Overview",
+    body: "This area demonstrates how account summaries could be arranged in a real application.",
+    note: "No live financial information is connected."
+  },
+  activity: {
+    title: "Sample activity",
+    body: "There are no real deposits, purchases, earnings, or withdrawals recorded in this preview.",
+    note: "This page does not connect to a payment provider or bank."
+  },
+  security: {
+    title: "Security information",
+    body: "A production service needs a secure backend, protected sessions, access controls, and secure password hashing.",
+    note: "Never store passwords or withdrawal PINs in public HTML or GitHub code."
+  }
+};
+
+const demoPanel = document.getElementById("demoPanel");
+
+document.querySelectorAll("[data-panel]").forEach(function (button) {
+  button.addEventListener("click", function () {
+    document.querySelectorAll("[data-panel]").forEach(function (item) {
+      item.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    const panel = previewPanels[button.dataset.panel];
+
+    demoPanel.innerHTML = "";
+
+    const heading = document.createElement("h4");
+    heading.textContent = panel.title;
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = panel.body;
+
+    const note = document.createElement("p");
+    note.className = "demo-result";
+    note.textContent = panel.note;
+
+    demoPanel.append(heading, paragraph, note);
+  });
+});
+</script>
+</body>
+</html>
+
